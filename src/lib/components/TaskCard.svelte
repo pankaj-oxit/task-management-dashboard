@@ -59,10 +59,10 @@
 <div
 	class="task-card {isGridView ? 'grid-view' : 'list-view'} {isSelected ? 'selected' : ''}"
 	class:animate={$enableAnimations}
-	role="button"
+	role="article"
 	tabindex="0"
 	aria-label="Task: {task.title}"
-	aria-selected={isSelected}
+	aria-describedby="task-{task.id}-description"
 	onkeydown={handleKeydown}
 	in:fly={{ y: 20, duration: $enableAnimations ? 300 : 0 }}
 	out:scale={{ duration: $enableAnimations ? 200 : 0 }}
@@ -88,7 +88,7 @@
 					checked={isSelected}
 					onchange={handleSelect}
 					aria-label="Select task {task.title}"
-					class="form-checkbox h-4 w-4 text-primary-600 rounded border-gray-300 focus:ring-primary-500"
+					class="form-checkbox"
 				/>
 			</div>
 		{/if}
@@ -107,7 +107,7 @@
 		</h3>
 
 		{#if task.description}
-			<p class="task-description" title={task.description}>
+			<p id="task-{task.id}-description" class="task-description" title={task.description}>
 				{task.description}
 			</p>
 		{/if}
@@ -184,8 +184,11 @@
 
 <style>
 	.task-card {
-		@apply bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer;
-		@apply focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 focus:ring-offset-gray-50 dark:focus:ring-offset-gray-900;
+		background-color: rgb(var(--color-surface-elevated));
+		border: 1px solid rgb(var(--color-border-primary));
+		@apply rounded-lg shadow-sm hover:shadow-md cursor-pointer;
+		@apply focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900;
+		@apply transition-all duration-200 ease-in-out;
 	}
 
 	.task-card.selected {
@@ -197,7 +200,8 @@
 	}
 
 	.task-card:hover {
-		@apply border-gray-300 dark:border-gray-600;
+		border-color: rgb(var(--color-border-secondary));
+		transform: translateY(-1px);
 	}
 
 	.task-card.grid-view {
@@ -253,7 +257,8 @@
 	}
 
 	.task-title {
-		@apply text-lg font-semibold text-gray-900 dark:text-gray-100 truncate;
+		color: rgb(var(--color-text-primary));
+		@apply text-lg font-semibold truncate;
 	}
 
 	.list-view .task-title {
@@ -261,7 +266,8 @@
 	}
 
 	.task-description {
-		@apply text-sm text-gray-600 dark:text-gray-400 line-clamp-2;
+		color: rgb(var(--color-text-secondary));
+		@apply text-sm line-clamp-2;
 	}
 
 	.list-view .task-description {
@@ -269,7 +275,8 @@
 	}
 
 	.task-metadata {
-		@apply flex flex-col gap-1 text-xs text-gray-500 dark:text-gray-400;
+		color: rgb(var(--color-text-tertiary));
+		@apply flex flex-col gap-1 text-xs;
 	}
 
 	.list-view .task-metadata {
@@ -297,9 +304,12 @@
 	}
 
 	.status-select {
-		@apply text-xs border border-gray-300 dark:border-gray-600 rounded px-2 py-1;
-		@apply bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100;
-		@apply focus:ring-1 focus:ring-primary-500 focus:border-primary-500;
+		background-color: rgb(var(--color-bg-secondary));
+		border: 1px solid rgb(var(--color-border-secondary));
+		color: rgb(var(--color-text-primary));
+		@apply text-xs rounded px-2 py-1;
+		@apply focus:ring-1 focus:ring-primary-500 focus:border-primary-500 dark:focus:border-primary-400;
+		@apply transition-colors duration-200;
 	}
 
 	.action-buttons {
@@ -307,18 +317,20 @@
 	}
 
 	.action-btn {
-		@apply p-1.5 rounded-md transition-colors duration-200;
-		@apply text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300;
+		color: rgb(var(--color-text-tertiary));
+		@apply p-1.5 rounded-md transition-all duration-200;
 		@apply hover:bg-gray-100 dark:hover:bg-gray-700;
-		@apply focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
+		@apply focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900;
 	}
 
 	.edit-btn:hover {
 		@apply text-primary-600 dark:text-primary-400;
+		transform: scale(1.05);
 	}
 
 	.delete-btn:hover {
 		@apply text-red-600 dark:text-red-400;
+		transform: scale(1.05);
 	}
 
 	/* Line clamp utility */

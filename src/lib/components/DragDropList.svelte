@@ -118,8 +118,10 @@
 	}
 
 	:global(.drag-handle) {
-		@apply cursor-grab text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300;
-		@apply transition-colors duration-200;
+		color: rgb(var(--color-text-tertiary));
+		@apply cursor-grab hover:text-gray-600 dark:hover:text-gray-300;
+		@apply transition-all duration-200 ease-in-out;
+		@apply hover:scale-110;
 	}
 
 	:global(.drag-handle:hover) {
@@ -139,10 +141,15 @@
 	}
 
 	:global(.task-card.sortable-ghost) {
-		@apply bg-gray-100 dark:bg-gray-700 border-dashed;
+		background-color: rgb(var(--color-bg-tertiary));
+		border: 2px dashed rgb(var(--color-border-secondary));
+		@apply opacity-60;
 	}
 
 	:global(.task-card.sortable-drag) {
-		@apply bg-white dark:bg-gray-800 shadow-xl border-primary-200 dark:border-primary-700;
+		background-color: rgb(var(--color-surface-elevated));
+		border: 1px solid rgb(var(--color-focus-ring));
+		@apply shadow-2xl;
+		transform: rotate(2deg) scale(1.02);
 	}
 </style>

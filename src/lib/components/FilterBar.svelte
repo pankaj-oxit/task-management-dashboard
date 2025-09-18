@@ -274,9 +274,11 @@
 
 <style>
 	.filter-bar {
-		@apply bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-4;
+		background-color: rgb(var(--color-surface-elevated));
+		border: 1px solid rgb(var(--color-border-primary));
+		@apply rounded-lg p-4 shadow-sm hover:shadow-md;
 		@apply flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4;
-		@apply shadow-sm;
+		@apply transition-shadow duration-200 ease-in-out;
 	}
 
 	.filter-section {
@@ -292,22 +294,27 @@
 	}
 
 	.search-icon {
-		@apply absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400 dark:text-gray-500;
+		color: rgb(var(--color-text-tertiary));
+		@apply absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4;
 	}
 
 	.search-input {
-		@apply w-full pl-10 pr-10 py-2 border border-gray-300 dark:border-gray-600 rounded-md;
-		@apply bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100;
+		background-color: rgb(var(--color-bg-secondary));
+		border: 1px solid rgb(var(--color-border-secondary));
+		color: rgb(var(--color-text-primary));
+		@apply w-full pl-10 pr-10 py-2 rounded-md sm:text-sm;
 		@apply placeholder-gray-400 dark:placeholder-gray-500;
-		@apply focus:ring-primary-500 focus:border-primary-500 sm:text-sm;
-		@apply transition-colors duration-200;
+		@apply focus:ring-primary-500 focus:border-primary-500 dark:focus:border-primary-400 dark:focus:ring-primary-400;
+		@apply transition-all duration-200 ease-in-out;
 	}
 
 	.clear-search-btn {
+		color: rgb(var(--color-text-tertiary));
 		@apply absolute right-3 top-1/2 transform -translate-y-1/2 p-1;
-		@apply text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300;
+		@apply hover:text-gray-600 dark:hover:text-gray-300;
 		@apply rounded-full hover:bg-gray-100 dark:hover:bg-gray-600;
-		@apply transition-colors duration-200;
+		@apply transition-all duration-200 ease-in-out;
+		@apply focus:outline-none focus:ring-2 focus:ring-primary-500;
 	}
 
 	.filter-group {
@@ -315,14 +322,17 @@
 	}
 
 	.filter-label {
-		@apply text-sm font-medium text-gray-700 dark:text-gray-300 whitespace-nowrap;
+		color: rgb(var(--color-text-secondary));
+		@apply text-sm font-medium whitespace-nowrap;
 	}
 
 	.filter-select {
-		@apply border border-gray-300 dark:border-gray-600 rounded-md px-3 py-2;
-		@apply bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100;
-		@apply focus:ring-primary-500 focus:border-primary-500 sm:text-sm;
-		@apply transition-colors duration-200;
+		background-color: rgb(var(--color-bg-secondary));
+		border: 1px solid rgb(var(--color-border-secondary));
+		color: rgb(var(--color-text-primary));
+		@apply rounded-md px-3 py-2 sm:text-sm;
+		@apply focus:ring-primary-500 focus:border-primary-500 dark:focus:border-primary-400 dark:focus:ring-primary-400;
+		@apply transition-all duration-200 ease-in-out;
 	}
 
 	.actions-section {
@@ -334,7 +344,8 @@
 	}
 
 	.sort-label {
-		@apply text-sm font-medium text-gray-700 dark:text-gray-300 whitespace-nowrap;
+		color: rgb(var(--color-text-secondary));
+		@apply text-sm font-medium whitespace-nowrap;
 	}
 
 	.sort-buttons {
@@ -342,11 +353,12 @@
 	}
 
 	.sort-btn {
+		color: rgb(var(--color-text-secondary));
 		@apply inline-flex items-center gap-1 px-3 py-1.5 text-sm font-medium rounded-md;
-		@apply text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100;
+		@apply hover:text-gray-900 dark:hover:text-gray-100;
 		@apply hover:bg-gray-100 dark:hover:bg-gray-700;
-		@apply focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
-		@apply transition-colors duration-200;
+		@apply focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900;
+		@apply transition-all duration-200 ease-in-out;
 	}
 
 	.sort-btn.active {
@@ -362,20 +374,23 @@
 	}
 
 	.view-toggle-btn {
+		color: rgb(var(--color-text-tertiary));
 		@apply p-2 rounded-md;
-		@apply text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300;
+		@apply hover:text-gray-600 dark:hover:text-gray-300;
 		@apply hover:bg-gray-100 dark:hover:bg-gray-700;
-		@apply focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
-		@apply transition-colors duration-200;
+		@apply focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900;
+		@apply transition-all duration-200 ease-in-out;
 	}
 
 	.clear-filters-btn {
+		background-color: rgb(var(--color-bg-secondary));
+		border: 1px solid rgb(var(--color-border-primary));
+		color: rgb(var(--color-text-secondary));
 		@apply px-3 py-1.5 text-sm font-medium rounded-md;
-		@apply text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100;
-		@apply border border-gray-300 dark:border-gray-600;
+		@apply hover:text-gray-900 dark:hover:text-gray-100;
 		@apply hover:bg-gray-50 dark:hover:bg-gray-700;
-		@apply focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
-		@apply transition-colors duration-200;
+		@apply focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900;
+		@apply transition-all duration-200 ease-in-out;
 	}
 
 	.results-info {
@@ -383,7 +398,8 @@
 	}
 
 	.results-text {
-		@apply text-sm text-gray-500 dark:text-gray-400;
+		color: rgb(var(--color-text-tertiary));
+		@apply text-sm;
 	}
 
 	.rotate-180 {

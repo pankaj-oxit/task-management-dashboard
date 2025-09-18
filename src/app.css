@@ -4,40 +4,282 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
-/* Custom base styles */
+/* Theme-aware CSS Custom Properties */
 @layer base {
+  :root {
+    /* Light theme colors */
+    --color-bg-primary: 249 250 251; /* gray-50 */
+    --color-bg-secondary: 255 255 255; /* white */
+    --color-bg-tertiary: 243 244 246; /* gray-100 */
+    --color-text-primary: 17 24 39; /* gray-900 */
+    --color-text-secondary: 75 85 99; /* gray-600 */
+    --color-text-tertiary: 107 114 128; /* gray-500 */
+    --color-border-primary: 229 231 235; /* gray-200 */
+    --color-border-secondary: 209 213 219; /* gray-300 */
+    --color-surface-elevated: 255 255 255; /* white */
+    --color-surface-overlay: 0 0 0 / 0.5;
+    
+    /* Interactive states */
+    --color-hover-bg: 243 244 246; /* gray-100 */
+    --color-active-bg: 229 231 235; /* gray-200 */
+    --color-focus-ring: 59 130 246; /* blue-500 */
+    
+    /* Status colors */
+    --color-success: 34 197 94; /* green-500 */
+    --color-success-bg: 240 253 244; /* green-50 */
+    --color-error: 239 68 68; /* red-500 */
+    --color-error-bg: 254 242 242; /* red-50 */
+    --color-warning: 245 158 11; /* amber-500 */
+    --color-warning-bg: 255 251 235; /* amber-50 */
+    --color-info: 59 130 246; /* blue-500 */
+    --color-info-bg: 239 246 255; /* blue-50 */
+  }
+
+  .dark {
+    /* Dark theme colors */
+    --color-bg-primary: 17 24 39; /* gray-900 */
+    --color-bg-secondary: 31 41 55; /* gray-800 */
+    --color-bg-tertiary: 55 65 81; /* gray-700 */
+    --color-text-primary: 243 244 246; /* gray-100 */
+    --color-text-secondary: 156 163 175; /* gray-400 */
+    --color-text-tertiary: 107 114 128; /* gray-500 */
+    --color-border-primary: 55 65 81; /* gray-700 */
+    --color-border-secondary: 75 85 99; /* gray-600 */
+    --color-surface-elevated: 31 41 55; /* gray-800 */
+    --color-surface-overlay: 0 0 0 / 0.7;
+    
+    /* Interactive states */
+    --color-hover-bg: 55 65 81; /* gray-700 */
+    --color-active-bg: 75 85 99; /* gray-600 */
+    --color-focus-ring: 96 165 250; /* blue-400 */
+    
+    /* Status colors - adjusted for dark mode */
+    --color-success: 34 197 94; /* green-500 */
+    --color-success-bg: 20 83 45 / 0.2; /* green-800 with opacity */
+    --color-error: 248 113 113; /* red-400 */
+    --color-error-bg: 153 27 27 / 0.2; /* red-900 with opacity */
+    --color-warning: 251 191 36; /* amber-400 */
+    --color-warning-bg: 146 64 14 / 0.2; /* amber-900 with opacity */
+    --color-info: 96 165 250; /* blue-400 */
+    --color-info-bg: 30 58 138 / 0.2; /* blue-900 with opacity */
+  }
+
   html {
     font-family: Inter, system-ui, sans-serif;
+    color-scheme: light dark;
   }
   
   body {
-    @apply bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100;
+    background-color: rgb(var(--color-bg-primary));
+    color: rgb(var(--color-text-primary));
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  }
+
+  /* Smooth theme transitions */
+  * {
+    transition-property: background-color, border-color, color, fill, stroke;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
   }
 }
 
 /* Custom component styles */
 @layer components {
   .btn-primary {
-    @apply bg-primary-600 hover:bg-primary-700 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed;
+    @apply bg-primary-600 hover:bg-primary-700 dark:bg-primary-500 dark:hover:bg-primary-600;
+    @apply text-white font-medium py-2 px-4 rounded-lg;
+    @apply focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900;
+    @apply disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-primary-600 dark:disabled:hover:bg-primary-500;
+    @apply transition-all duration-200 ease-in-out;
+    @apply shadow-sm hover:shadow-md;
   }
   
   .btn-secondary {
-    @apply bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-900 dark:text-gray-100 font-medium py-2 px-4 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed;
+    background-color: rgb(var(--color-bg-secondary));
+    border: 1px solid rgb(var(--color-border-primary));
+    color: rgb(var(--color-text-primary));
+    @apply font-medium py-2 px-4 rounded-lg;
+    @apply hover:bg-gray-50 dark:hover:bg-gray-700;
+    @apply focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900;
+    @apply disabled:opacity-50 disabled:cursor-not-allowed;
+    @apply transition-all duration-200 ease-in-out;
+    @apply shadow-sm hover:shadow-md;
   }
   
   .btn-danger {
-    @apply bg-red-600 hover:bg-red-700 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed;
+    @apply bg-red-600 hover:bg-red-700 dark:bg-red-500 dark:hover:bg-red-600;
+    @apply text-white font-medium py-2 px-4 rounded-lg;
+    @apply focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900;
+    @apply disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-red-600 dark:disabled:hover:bg-red-500;
+    @apply transition-all duration-200 ease-in-out;
+    @apply shadow-sm hover:shadow-md;
+  }
+
+  .btn-warning {
+    @apply bg-yellow-600 hover:bg-yellow-700 dark:bg-yellow-500 dark:hover:bg-yellow-600;
+    @apply text-white font-medium py-2 px-4 rounded-lg;
+    @apply focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900;
+    @apply disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-yellow-600 dark:disabled:hover:bg-yellow-500;
+    @apply transition-all duration-200 ease-in-out;
+    @apply shadow-sm hover:shadow-md;
   }
   
   .card {
-    @apply bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6;
+    background-color: rgb(var(--color-surface-elevated));
+    border: 1px solid rgb(var(--color-border-primary));
+    @apply rounded-lg shadow-sm hover:shadow-md p-6;
+    @apply transition-all duration-200 ease-in-out;
   }
   
   .form-input {
-    @apply block w-full rounded-md border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm;
+    background-color: rgb(var(--color-bg-secondary));
+    border: 1px solid rgb(var(--color-border-secondary));
+    color: rgb(var(--color-text-primary));
+    @apply block w-full rounded-md shadow-sm sm:text-sm;
+    @apply focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-400 dark:focus:ring-primary-400;
+    @apply placeholder-gray-400 dark:placeholder-gray-500;
+    @apply disabled:bg-gray-100 dark:disabled:bg-gray-800 disabled:text-gray-500 dark:disabled:text-gray-400;
+    @apply transition-all duration-200 ease-in-out;
+  }
+
+  .form-input:focus {
+    box-shadow: 0 0 0 1px rgb(var(--color-focus-ring)), 0 0 0 3px rgb(var(--color-focus-ring) / 0.1);
   }
   
   .form-label {
-    @apply block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2;
+    color: rgb(var(--color-text-secondary));
+    @apply block text-sm font-medium mb-2;
+  }
+
+  .form-checkbox {
+    @apply h-4 w-4 text-primary-600 dark:text-primary-500 rounded;
+    @apply border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700;
+    @apply focus:ring-primary-500 dark:focus:ring-primary-400 focus:ring-2;
+    @apply transition-colors duration-200;
+  }
+
+  /* Theme-aware scrollbars */
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(var(--color-border-secondary)) transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background-color: rgb(var(--color-border-secondary));
+    border-radius: 3px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(var(--color-text-tertiary));
+  }
+
+  /* Status badge styles */
+  .status-badge-pending {
+    @apply bg-yellow-100 dark:bg-yellow-900/20 text-yellow-800 dark:text-yellow-300;
+    @apply border border-yellow-200 dark:border-yellow-800;
+  }
+
+  .status-badge-in-progress {
+    @apply bg-blue-100 dark:bg-blue-900/20 text-blue-800 dark:text-blue-300;
+    @apply border border-blue-200 dark:border-blue-800;
+  }
+
+  .status-badge-completed {
+    @apply bg-green-100 dark:bg-green-900/20 text-green-800 dark:text-green-300;
+    @apply border border-green-200 dark:border-green-800;
+  }
+
+  /* Loading spinner */
+  .loading-spinner {
+    @apply w-8 h-8 border-4 rounded-full animate-spin;
+    border-color: rgb(var(--color-border-primary));
+    border-top-color: rgb(var(--color-focus-ring));
+  }
+
+  /* Animation utilities */
+  .animate-in {
+    animation-name: animate-in;
+    animation-duration: 200ms;
+    animation-fill-mode: both;
+  }
+
+  .fade-in-0 {
+    animation-name: fade-in;
+  }
+
+  .zoom-in-95 {
+    animation-name: zoom-in;
+  }
+
+  @keyframes animate-in {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes zoom-in {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  /* Focus ring improvements */
+  .focus-ring-improved {
+    @apply focus:outline-none;
+    box-shadow: 0 0 0 2px rgb(var(--color-focus-ring) / 0.2), 
+                0 0 0 4px rgb(var(--color-focus-ring) / 0.1);
+  }
+
+  /* High contrast mode support */
+  @media (prefers-contrast: high) {
+    :root {
+      --color-border-primary: 0 0 0;
+      --color-border-secondary: 0 0 0;
+    }
+
+    .dark {
+      --color-border-primary: 255 255 255;
+      --color-border-secondary: 255 255 255;
+    }
+  }
+
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 }

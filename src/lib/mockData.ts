@@ -45,7 +45,7 @@ export const mockTasks: Task[] = [
 	{
 		id: generateId(),
 		title: 'Implement dark mode toggle',
-		description: 'Add a toggle to switch between light and dark themes with system preference detection',
+		description: 'Add a toggle to switch between light and dark themes',
 		status: 'in-progress',
 		createdAt: new Date('2024-01-17T11:00:00'),
 		updatedAt: new Date('2024-01-17T15:30:00'),

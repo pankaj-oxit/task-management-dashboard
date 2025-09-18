@@ -155,34 +155,38 @@
 <style>
 	.modal-backdrop {
 		@apply fixed inset-0 z-50 flex items-center justify-center p-4;
-		@apply bg-black bg-opacity-50 dark:bg-opacity-70;
+		background-color: rgb(var(--color-surface-overlay));
+		backdrop-filter: blur(4px);
 	}
 
 	.modal-container {
-		@apply w-full mx-auto;
-		@apply bg-white dark:bg-gray-800 rounded-lg shadow-xl;
-		@apply border border-gray-200 dark:border-gray-700;
+		background-color: rgb(var(--color-surface-elevated));
+		border: 1px solid rgb(var(--color-border-primary));
+		@apply w-full mx-auto rounded-lg shadow-xl;
 		@apply max-h-[90vh] flex flex-col;
+		@apply animate-in fade-in-0 zoom-in-95 duration-200;
 	}
 
 	.modal-header {
-		@apply flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700;
-		@apply flex-shrink-0;
+		border-bottom: 1px solid rgb(var(--color-border-primary));
+		@apply flex items-center justify-between p-6 flex-shrink-0;
 	}
 
 	.modal-title {
-		@apply text-xl font-semibold text-gray-900 dark:text-gray-100;
+		color: rgb(var(--color-text-primary));
+		@apply text-xl font-semibold;
 	}
 
 	.close-button {
+		color: rgb(var(--color-text-tertiary));
 		@apply p-2 rounded-md;
-		@apply text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300;
+		@apply hover:text-gray-600 dark:hover:text-gray-300;
 		@apply hover:bg-gray-100 dark:hover:bg-gray-700;
-		@apply focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
-		@apply transition-colors duration-200;
+		@apply focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900;
+		@apply transition-all duration-200 ease-in-out;
 	}
 
 	.modal-content {
-		@apply flex-1 overflow-y-auto;
+		@apply flex-1 overflow-y-auto scrollbar-thin;
 	}
 </style>

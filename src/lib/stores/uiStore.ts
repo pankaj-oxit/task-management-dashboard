@@ -1,7 +1,7 @@
 import { writable, derived } from 'svelte/store';
 import { browser } from '$app/environment';
 import type { Task, Theme } from '../types';
-import { getSystemTheme, applyTheme, loadFromLocalStorage, saveToLocalStorage } from '../utils';
+import { applyTheme, loadFromLocalStorage, saveToLocalStorage } from '../utils';
 
 // Modal state
 export const isCreateModalOpen = writable<boolean>(false);
@@ -12,16 +12,11 @@ export const deletingTask = writable<Task | null>(null);
 
 // Theme management
 export const theme = writable<Theme>(
-	browser ? loadFromLocalStorage('theme', 'system') : 'system'
+	browser ? loadFromLocalStorage('theme', 'light') : 'light'
 );
 
-// Derived store for actual theme (resolves 'system' to 'light' or 'dark')
-export const actualTheme = derived(theme, ($theme) => {
-	if ($theme === 'system') {
-		return browser ? getSystemTheme() : 'light';
-	}
-	return $theme;
-});
+// Derived store for actual theme (same as theme since no system option)
+export const actualTheme = derived(theme, ($theme) => $theme);
 
 // Apply theme when it changes
 if (browser) {
@@ -34,12 +29,6 @@ if (browser) {
 		saveToLocalStorage('theme', theme);
 	});
 
-	// Listen for system theme changes
-	const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-	mediaQuery.addEventListener('change', () => {
-		// Trigger reactivity for system theme
-		theme.update(t => t);
-	});
 }
 
 // UI preferences
@@ -162,13 +151,12 @@ export const uiActions = {
 		theme.set(newTheme);
 	},
 
-	toggleTheme() {
-		theme.update(current => {
-			if (current === 'light') return 'dark';
-			if (current === 'dark') return 'system';
-			return 'light';
-		});
-	},
+		toggleTheme() {
+			theme.update(current => {
+				if (current === 'light') return 'dark';
+				return 'light';
+			});
+		},
 
 	// View management
 	toggleSidebar() {

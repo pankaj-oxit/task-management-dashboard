@@ -87,8 +87,9 @@
 	class="task-form-container"
 	in:fly={{ y: -20, duration: $enableAnimations ? 300 : 0 }}
 	out:fly={{ y: -20, duration: $enableAnimations ? 200 : 0 }}
+	onkeydown={handleKeydown}
 >
-	<form onsubmit={handleSubmit} onkeydown={handleKeydown} class="task-form">
+	<form onsubmit={handleSubmit} class="task-form">
 		<div class="form-header">
 			<h2 class="form-title">
 				{isEditing ? 'Edit Task' : 'Create New Task'}
@@ -215,16 +216,19 @@
 	}
 
 	.task-form {
-		@apply bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700;
-		@apply flex flex-col;
+		background-color: rgb(var(--color-surface-elevated));
+		border: 1px solid rgb(var(--color-border-primary));
+		@apply rounded-lg shadow-lg flex flex-col;
 	}
 
 	.form-header {
-		@apply px-6 py-4 border-b border-gray-200 dark:border-gray-700;
+		border-bottom: 1px solid rgb(var(--color-border-primary));
+		@apply px-6 py-4;
 	}
 
 	.form-title {
-		@apply text-xl font-semibold text-gray-900 dark:text-gray-100;
+		color: rgb(var(--color-text-primary));
+		@apply text-xl font-semibold;
 	}
 
 	.form-content {
@@ -236,7 +240,8 @@
 	}
 
 	.form-label {
-		@apply block text-sm font-medium text-gray-700 dark:text-gray-300;
+		color: rgb(var(--color-text-secondary));
+		@apply block text-sm font-medium;
 	}
 
 	.required-indicator {
@@ -244,11 +249,13 @@
 	}
 
 	.form-input {
-		@apply block w-full rounded-md border-gray-300 dark:border-gray-600;
-		@apply bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100;
-		@apply shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm;
+		background-color: rgb(var(--color-bg-secondary));
+		border: 1px solid rgb(var(--color-border-secondary));
+		color: rgb(var(--color-text-primary));
+		@apply block w-full rounded-md shadow-sm sm:text-sm;
+		@apply focus:border-primary-500 focus:ring-primary-500 dark:focus:border-primary-400 dark:focus:ring-primary-400;
 		@apply placeholder-gray-400 dark:placeholder-gray-500;
-		@apply transition-colors duration-200;
+		@apply transition-all duration-200 ease-in-out;
 	}
 
 	.form-input.error {
@@ -264,11 +271,13 @@
 	}
 
 	.character-count {
-		@apply text-xs text-gray-500 dark:text-gray-400 text-right;
+		color: rgb(var(--color-text-tertiary));
+		@apply text-xs text-right;
 	}
 
 	.form-actions {
-		@apply px-6 py-4 bg-gray-50 dark:bg-gray-900 rounded-b-lg;
+		background-color: rgb(var(--color-bg-tertiary));
+		@apply px-6 py-4 rounded-b-lg;
 		@apply flex items-center justify-end gap-3;
 	}
 
@@ -280,11 +289,14 @@
 	}
 
 	.btn-secondary {
-		@apply inline-flex items-center px-4 py-2 border border-gray-300 dark:border-gray-600 text-sm font-medium rounded-md;
-		@apply text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700;
-		@apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500;
+		background-color: rgb(var(--color-bg-secondary));
+		border: 1px solid rgb(var(--color-border-primary));
+		color: rgb(var(--color-text-primary));
+		@apply inline-flex items-center px-4 py-2 text-sm font-medium rounded-md;
+		@apply hover:bg-gray-50 dark:hover:bg-gray-700;
+		@apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 dark:focus:ring-offset-gray-900;
 		@apply disabled:opacity-50 disabled:cursor-not-allowed;
-		@apply transition-colors duration-200;
+		@apply transition-all duration-200 ease-in-out;
 	}
 
 	.sr-only {

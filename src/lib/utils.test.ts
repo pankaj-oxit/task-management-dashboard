@@ -13,7 +13,6 @@ import {
 	validateTaskDescription,
 	saveToLocalStorage,
 	loadFromLocalStorage,
-	getSystemTheme,
 	applyTheme,
 	createSlideTransition,
 	createScaleTransition
@@ -99,14 +98,14 @@ describe('Date formatting utilities', () => {
 
 describe('Task status utilities', () => {
 	describe('getStatusColor', () => {
-		it('should return correct colors for each status', () => {
-			expect(getStatusColor('pending')).toContain('yellow');
-			expect(getStatusColor('in-progress')).toContain('blue');
-			expect(getStatusColor('completed')).toContain('green');
+		it('should return correct CSS classes for each status', () => {
+			expect(getStatusColor('pending')).toBe('status-badge-pending');
+			expect(getStatusColor('in-progress')).toBe('status-badge-in-progress');
+			expect(getStatusColor('completed')).toBe('status-badge-completed');
 		});
 
-		it('should return default color for unknown status', () => {
-			expect(getStatusColor('unknown' as any)).toContain('gray');
+		it('should return default CSS class for unknown status', () => {
+			expect(getStatusColor('unknown' as any)).toBe('status-badge-pending');
 		});
 	});
 
@@ -350,29 +349,6 @@ describe('Local storage utilities', () => {
 });
 
 describe('Theme utilities', () => {
-	describe('getSystemTheme', () => {
-		it('should return dark when system prefers dark', () => {
-			const mockMatchMedia = vi.fn(() => ({
-				matches: true,
-				addListener: vi.fn(),
-				removeListener: vi.fn()
-			}));
-			Object.defineProperty(window, 'matchMedia', { value: mockMatchMedia });
-			
-			expect(getSystemTheme()).toBe('dark');
-		});
-
-		it('should return light when system prefers light', () => {
-			const mockMatchMedia = vi.fn(() => ({
-				matches: false,
-				addListener: vi.fn(),
-				removeListener: vi.fn()
-			}));
-			Object.defineProperty(window, 'matchMedia', { value: mockMatchMedia });
-			
-			expect(getSystemTheme()).toBe('light');
-		});
-	});
 
 	describe('applyTheme', () => {
 		it('should add dark class for dark theme', () => {

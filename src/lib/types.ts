@@ -81,7 +81,7 @@ export interface DragDropState {
 }
 
 // Theme types
-export type Theme = 'light' | 'dark' | 'system';
+export type Theme = 'light' | 'dark';
 
 // Configuration types
 export interface AppConfig {

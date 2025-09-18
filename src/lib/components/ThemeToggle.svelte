@@ -7,14 +7,12 @@
 
 	const themeLabels = {
 		light: 'Light',
-		dark: 'Dark',
-		system: 'System'
+		dark: 'Dark'
 	};
 
 	const themeIcons = {
 		light: '☀️',
-		dark: '🌙',
-		system: '💻'
+		dark: '🌙'
 	};
 </script>
 
@@ -23,7 +21,7 @@
 	onclick={handleToggleTheme}
 	class="theme-toggle"
 	title="Toggle theme ({themeLabels[$theme]})"
-	aria-label="Toggle between light, dark, and system theme"
+	aria-label="Toggle between light and dark theme"
 >
 	<span class="theme-icon" aria-hidden="true">
 		{themeIcons[$theme]}
@@ -38,15 +36,24 @@
 
 <style>
 	.theme-toggle {
+		color: rgb(var(--color-text-secondary));
+		background-color: rgb(var(--color-bg-secondary));
+		border: 1px solid rgb(var(--color-border-primary));
 		@apply inline-flex items-center gap-2 px-3 py-2 rounded-md;
-		@apply text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100;
+		@apply hover:text-gray-900 dark:hover:text-gray-100;
 		@apply hover:bg-gray-100 dark:hover:bg-gray-700;
-		@apply focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
-		@apply transition-colors duration-200;
+		@apply focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900;
+		@apply transition-all duration-200 ease-in-out;
+		@apply shadow-sm hover:shadow-md;
 	}
 
 	.theme-icon {
 		@apply text-lg;
+		@apply transition-transform duration-200 ease-in-out;
+	}
+
+	.theme-toggle:hover .theme-icon {
+		transform: scale(1.1) rotate(10deg);
 	}
 
 	.theme-label {

@@ -36,13 +36,13 @@ export function getRelativeTime(date: Date): string {
 export function getStatusColor(status: TaskStatus): string {
 	switch (status) {
 		case 'pending':
-			return 'text-yellow-600 bg-yellow-100 dark:text-yellow-400 dark:bg-yellow-900/20';
+			return 'status-badge-pending';
 		case 'in-progress':
-			return 'text-blue-600 bg-blue-100 dark:text-blue-400 dark:bg-blue-900/20';
+			return 'status-badge-in-progress';
 		case 'completed':
-			return 'text-green-600 bg-green-100 dark:text-green-400 dark:bg-green-900/20';
+			return 'status-badge-completed';
 		default:
-			return 'text-gray-600 bg-gray-100 dark:text-gray-400 dark:bg-gray-900/20';
+			return 'status-badge-pending';
 	}
 }
 
@@ -144,12 +144,6 @@ export function loadFromLocalStorage<T>(key: string, defaultValue: T): T {
 	}
 }
 
-export function getSystemTheme(): 'light' | 'dark' {
-	if (typeof window !== 'undefined') {
-		return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-	}
-	return 'light';
-}
 
 export function applyTheme(theme: 'light' | 'dark'): void {
 	if (typeof document !== 'undefined') {

@@ -48,7 +48,7 @@ describe('UI Store', () => {
 		isDeleteModalOpen.set(false);
 		editingTask.set(null);
 		deletingTask.set(null);
-		theme.set('system');
+		theme.set('light');
 		viewMode.set('grid');
 		notifications.set([]);
 		selectedTaskIds.set(new Set());
@@ -127,26 +127,18 @@ describe('UI Store', () => {
 			expect(get(theme)).toBe('dark');
 			
 			uiActions.toggleTheme();
-			expect(get(theme)).toBe('system');
+			expect(get(theme)).toBe('light');
 			
 			uiActions.toggleTheme();
-			expect(get(theme)).toBe('light');
+			expect(get(theme)).toBe('dark');
 		});
 
-		it('should resolve system theme to actual theme', () => {
-			// Mock system preference for dark mode
-			const mockMatchMedia = vi.fn(() => ({
-				matches: true,
-				addListener: vi.fn(),
-				removeListener: vi.fn(),
-				addEventListener: vi.fn(),
-				removeEventListener: vi.fn()
-			}));
-			Object.defineProperty(global.window, 'matchMedia', { value: mockMatchMedia });
+		it('should have actualTheme same as theme', () => {
+			theme.set('dark');
+			expect(get(actualTheme)).toBe('dark');
 			
-			theme.set('system');
-			// Note: actualTheme derived store behavior depends on browser environment
-			// In test environment, it defaults to 'light'
+			theme.set('light');
+			expect(get(actualTheme)).toBe('light');
 		});
 	});
 

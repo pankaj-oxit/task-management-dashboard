@@ -147,13 +147,16 @@
 
 <style>
 	.notification-toast {
-		@apply flex items-start gap-3 p-4 rounded-lg border shadow-lg;
+		@apply flex items-start gap-3 p-4 rounded-lg border shadow-lg hover:shadow-xl;
 		@apply max-w-sm w-full;
+		@apply transition-all duration-200 ease-in-out;
+		@apply backdrop-blur-sm;
 	}
 
 	.notification-icon {
+		background-color: rgb(var(--color-surface-elevated));
 		@apply flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center;
-		@apply bg-white dark:bg-gray-800;
+		@apply shadow-sm;
 	}
 
 	.notification-content {
@@ -161,11 +164,13 @@
 	}
 
 	.notification-title {
-		@apply text-sm font-medium text-gray-900 dark:text-gray-100;
+		color: rgb(var(--color-text-primary));
+		@apply text-sm font-medium;
 	}
 
 	.notification-message {
-		@apply text-sm text-gray-600 dark:text-gray-400 mt-1;
+		color: rgb(var(--color-text-secondary));
+		@apply text-sm mt-1;
 	}
 
 	.notification-actions {
@@ -176,14 +181,17 @@
 		@apply text-sm font-medium underline;
 		@apply text-primary-600 hover:text-primary-500 dark:text-primary-400 dark:hover:text-primary-300;
 		@apply focus:outline-none focus:ring-2 focus:ring-primary-500 rounded;
-		@apply transition-colors duration-200;
+		@apply transition-all duration-200 ease-in-out;
+		@apply hover:scale-105;
 	}
 
 	.notification-dismiss-btn {
+		color: rgb(var(--color-text-tertiary));
 		@apply p-1 rounded-md;
-		@apply text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300;
+		@apply hover:text-gray-600 dark:hover:text-gray-300;
 		@apply hover:bg-white dark:hover:bg-gray-800;
 		@apply focus:outline-none focus:ring-2 focus:ring-primary-500;
-		@apply transition-colors duration-200;
+		@apply transition-all duration-200 ease-in-out;
+		@apply hover:scale-110;
 	}
 </style>

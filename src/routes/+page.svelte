@@ -349,12 +349,16 @@
 
 <style>
 	.dashboard-container {
-		@apply min-h-screen bg-gray-50 dark:bg-gray-900;
+		background-color: rgb(var(--color-bg-primary));
+		@apply min-h-screen;
+		@apply transition-colors duration-300 ease-in-out;
 	}
 
 	.dashboard-header {
-		@apply bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700;
+		background-color: rgb(var(--color-surface-elevated));
+		border-bottom: 1px solid rgb(var(--color-border-primary));
 		@apply sticky top-0 z-40;
+		@apply backdrop-blur-sm bg-opacity-95 dark:bg-opacity-95;
 	}
 
 	.header-content {
@@ -367,11 +371,13 @@
 	}
 
 	.title {
-		@apply text-2xl font-bold text-gray-900 dark:text-gray-100;
+		color: rgb(var(--color-text-primary));
+		@apply text-2xl font-bold;
 	}
 
 	.subtitle {
-		@apply text-sm text-gray-600 dark:text-gray-400 mt-1;
+		color: rgb(var(--color-text-secondary));
+		@apply text-sm mt-1;
 	}
 
 	.header-actions {
@@ -408,11 +414,13 @@
 	}
 
 	.stat-value {
-		@apply text-2xl font-bold text-gray-900 dark:text-gray-100;
+		color: rgb(var(--color-text-primary));
+		@apply text-2xl font-bold;
 	}
 
 	.stat-label {
-		@apply text-xs text-gray-600 dark:text-gray-400 mt-1;
+		color: rgb(var(--color-text-secondary));
+		@apply text-xs mt-1;
 	}
 
 	.dashboard-main {
@@ -421,8 +429,10 @@
 	}
 
 	.error-banner {
-		@apply bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-4;
-		@apply flex items-center justify-between;
+		background-color: rgb(var(--color-error-bg));
+		border: 1px solid rgb(var(--color-error) / 0.3);
+		@apply rounded-lg p-4 flex items-center justify-between;
+		@apply shadow-sm;
 	}
 
 	.error-content {
@@ -430,12 +440,15 @@
 	}
 
 	.error-icon {
-		@apply w-5 h-5 text-red-600 dark:text-red-400 flex-shrink-0;
+		color: rgb(var(--color-error));
+		@apply w-5 h-5 flex-shrink-0;
 	}
 
 	.error-dismiss {
-		@apply p-1 rounded-md text-red-600 dark:text-red-400 hover:bg-red-100 dark:hover:bg-red-800;
+		color: rgb(var(--color-error));
+		@apply p-1 rounded-md hover:bg-red-100 dark:hover:bg-red-800;
 		@apply focus:outline-none focus:ring-2 focus:ring-red-500;
+		@apply transition-all duration-200 ease-in-out;
 	}
 
 	.task-list-container {
@@ -451,7 +464,8 @@
 	}
 
 	.loading-text {
-		@apply mt-4 text-gray-600 dark:text-gray-400;
+		color: rgb(var(--color-text-secondary));
+		@apply mt-4;
 	}
 
 	.empty-state {
@@ -459,15 +473,18 @@
 	}
 
 	.empty-icon {
-		@apply w-16 h-16 text-gray-400 dark:text-gray-500 mb-4;
+		color: rgb(var(--color-text-tertiary));
+		@apply w-16 h-16 mb-4;
 	}
 
 	.empty-title {
-		@apply text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2;
+		color: rgb(var(--color-text-primary));
+		@apply text-xl font-semibold mb-2;
 	}
 
 	.empty-description {
-		@apply text-gray-600 dark:text-gray-400 max-w-md;
+		color: rgb(var(--color-text-secondary));
+		@apply max-w-md;
 	}
 
 

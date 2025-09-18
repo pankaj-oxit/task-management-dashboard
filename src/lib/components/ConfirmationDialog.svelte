@@ -230,13 +230,15 @@
 <style>
 	.dialog-backdrop {
 		@apply fixed inset-0 z-50 flex items-center justify-center p-4;
-		@apply bg-black bg-opacity-50 dark:bg-opacity-70;
+		background-color: rgb(var(--color-surface-overlay));
+		backdrop-filter: blur(4px);
 	}
 
 	.dialog-container {
-		@apply bg-white dark:bg-gray-800 rounded-lg shadow-xl;
-		@apply max-w-md w-full mx-auto;
-		@apply border border-gray-200 dark:border-gray-700;
+		background-color: rgb(var(--color-surface-elevated));
+		border: 1px solid rgb(var(--color-border-primary));
+		@apply rounded-lg shadow-xl max-w-md w-full mx-auto;
+		@apply animate-in fade-in-0 zoom-in-95 duration-200;
 	}
 
 	.dialog-content {
@@ -256,32 +258,38 @@
 	}
 
 	.dialog-title {
-		@apply text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2;
+		color: rgb(var(--color-text-primary));
+		@apply text-lg font-semibold mb-2;
 	}
 
 	.dialog-message {
-		@apply text-sm text-gray-600 dark:text-gray-400 leading-relaxed;
+		color: rgb(var(--color-text-secondary));
+		@apply text-sm leading-relaxed;
 	}
 
 	.dialog-actions {
-		@apply px-6 py-4 bg-gray-50 dark:bg-gray-900 rounded-b-lg;
+		background-color: rgb(var(--color-bg-tertiary));
+		@apply px-6 py-4 rounded-b-lg;
 		@apply flex items-center justify-end gap-3;
 	}
 
 	.btn-secondary {
-		@apply inline-flex items-center px-4 py-2 border border-gray-300 dark:border-gray-600 text-sm font-medium rounded-md;
-		@apply text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800;
+		background-color: rgb(var(--color-bg-secondary));
+		border: 1px solid rgb(var(--color-border-primary));
+		color: rgb(var(--color-text-primary));
+		@apply inline-flex items-center px-4 py-2 text-sm font-medium rounded-md;
 		@apply hover:bg-gray-50 dark:hover:bg-gray-700;
-		@apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500;
+		@apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 dark:focus:ring-offset-gray-900;
 		@apply disabled:opacity-50 disabled:cursor-not-allowed;
-		@apply transition-colors duration-200;
+		@apply transition-all duration-200 ease-in-out;
 	}
 
 	.btn-confirm {
 		@apply inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md;
-		@apply focus:outline-none focus:ring-2 focus:ring-offset-2;
+		@apply focus:outline-none focus:ring-2 focus:ring-offset-2 dark:focus:ring-offset-gray-900;
 		@apply disabled:opacity-50 disabled:cursor-not-allowed;
-		@apply transition-colors duration-200;
+		@apply transition-all duration-200 ease-in-out;
+		@apply shadow-sm hover:shadow-md;
 	}
 
 	.btn-primary {
