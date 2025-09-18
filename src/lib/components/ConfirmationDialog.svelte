@@ -238,7 +238,6 @@
 		background-color: rgb(var(--color-surface-elevated));
 		border: 1px solid rgb(var(--color-border-primary));
 		@apply rounded-lg shadow-xl max-w-md w-full mx-auto;
-		@apply animate-in fade-in-0 zoom-in-95 duration-200;
 	}
 
 	.dialog-content {
@@ -278,10 +277,15 @@
 		border: 1px solid rgb(var(--color-border-primary));
 		color: rgb(var(--color-text-primary));
 		@apply inline-flex items-center px-4 py-2 text-sm font-medium rounded-md;
-		@apply hover:bg-gray-50 dark:hover:bg-gray-700;
 		@apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 dark:focus:ring-offset-gray-900;
 		@apply disabled:opacity-50 disabled:cursor-not-allowed;
 		@apply transition-all duration-200 ease-in-out;
+		@apply shadow-sm hover:shadow-md;
+	}
+
+	.btn-secondary:hover:not(:disabled) {
+		background-color: rgb(var(--color-hover-bg));
+		border-color: rgb(var(--color-border-secondary));
 	}
 
 	.btn-confirm {

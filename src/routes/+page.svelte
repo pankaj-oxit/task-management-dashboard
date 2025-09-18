@@ -452,7 +452,7 @@
 	}
 
 	.task-list-container {
-		@apply min-h-[400px];
+		@apply min-h-[400px] my-4 mt-6;
 	}
 
 	.loading-state {

@@ -90,11 +90,11 @@
 
 <style>
 	.drag-drop-container {
-		@apply w-full;
+		@apply w-full mt-4;
 	}
 
 	.grid-container {
-		@apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6;
+		@apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4;
 	}
 
 	.list-container {
